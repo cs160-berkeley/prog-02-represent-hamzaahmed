@@ -1,20 +1,20 @@
 # PROG 02: Represent!
 
-Briefly describe your app here.
+This is my Represent! app for CS160.
 
 ## Authors
 
-FirstName LastName ([your_email@berkeley.edu](mailto:your_email@berkeley.edu))
+Hamza Ahmed ([hamza.ah@berkeley.edu](mailto:hamza.ah@berkeley.edu))
 
 ## Demo Video
 
-See [your demo video title here] (https://link_to_your_video)
+See [my demo video] (https://https://youtu.be/7xXJb1NRkIo)
 
 ## Screenshots
 
-<img src="screenshots/main.png" height="400" alt="Screenshot"/>
+<img src="screenshots/main.jpg" height="400" alt="Screenshot"/>
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Any other support
+* StackOverflow for tons of help + Shake Detector code
+* Catnip (CS160 Staff)
