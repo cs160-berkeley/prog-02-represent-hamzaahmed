@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">PROG02</string>
+    <string name="app_name">Represent</string>
+    <string name="twitter_handle">[at]BarbaraBoxer</string>
+    <string name="title_activity_zip_code">Zip Code</string>
 </resources>

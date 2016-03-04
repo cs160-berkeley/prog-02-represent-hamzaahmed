@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="60dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.hamza.prog02.CongressionalViewActivity"
+    android:visibility="visible">
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+        android:id="@+id/FirstBox"
+        android:layout_below="@+id/CongressText"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/BarbaraName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Barbara Boxer"
+            android:fontFamily="sans-serif"
+            android:textSize="30dp"
+            android:gravity="center"
+            android:textColor="#222"
+            android:layout_marginBottom="5dp"
+            android:layout_above="@+id/BarbaraImage"
+            android:layout_alignEnd="@+id/BarbaraImage"
+            android:enabled="false" />
+
+        <TextView
+            android:id="@+id/BarbaraPosition2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Senator"
+            android:fontFamily="sans-serif-light"
+            android:textSize="14dp"
+            android:gravity="center"
+            android:textColor="#222"
+            android:layout_marginBottom="15dp"
+            android:layout_above="@+id/BarbaraImage2"
+            android:layout_alignEnd="@+id/BarbaraImage2"
+            android:enabled="false" />
+
+        <ImageButton
+            android:layout_width="320dp"
+            android:layout_height="320dp"
+            android:id="@+id/BarbaraImage"
+            android:src="@drawable/barbara"
+            android:scaleType="fitXY"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:padding="0dp" />
+
+        <LinearLayout
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:background="#2F80ED"
+            android:padding="16dp"
+            android:layout_below="@+id/FirstBox"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/linearLayout2">
+
+            <ImageButton
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/firstIcon"
+                android:src="@drawable/democrat"
+                android:background="#00000000"
+                android:longClickable="false"
+                android:scaleType="fitCenter"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/secondIcon"
+                android:text="Democrat"
+                android:textColor="#fff"
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:layout_alignTop="@+id/fourthIcon2"
+                android:layout_toEndOf="@+id/linearLayout" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:background="#828282"
+            android:padding="16dp"
+            android:layout_marginTop="40dp"
+            android:layout_above="@+id/linearLayout2"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/linearLayout3">
+
+            <TextView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/TermCaption"
+                android:text="Term Ends"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:scaleType="fitCenter"
+                android:gravity="left|center_vertical" />
+            <TextView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/TermYear"
+                android:text="2017"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:paddingRight="10dp"
+                android:scaleType="fitCenter"/>
+            </LinearLayout>
+
+        <Button
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:text="Active Committees"
+            android:textSize="20dp"
+            android:id="@+id/ZipButton"
+            android:layout_marginTop="12dp"
+            android:gravity="left"
+            android:fontFamily="sans-serif"
+            android:padding="16dp"
+            android:textColor="#fff"
+            android:textAllCaps="false"
+            android:background="#828282"
+            android:layout_centerVertical="true"
+            android:layout_below="@+id/ActionText"
+            android:onClick="CommitteeContainerVisible"
+            android:layout_centerHorizontal="true" />
+
+
+        <LinearLayout
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:background="#e3e3e3"
+            android:padding="4dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/CommitteesItemContainer"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:background="#e3e3e3"
+                android:padding="4dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/CommitteesItemLayout">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:id="@+id/CommitteesItemImage"
+                    android:layout_weight="0.2"
+                    android:src="@drawable/seal"
+                    android:foregroundGravity="left"
+                    android:scaleType="fitCenter"/>
+
+                <TextView
+                    android:layout_width="32dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/CommitteesItemText"
+                    android:text="Senate Select Committee on Ethics"
+                    android:textColor="#222"
+                    android:textSize="12dp"
+                    android:gravity="center_vertical"
+
+                    android:layout_weight="0.8"
+                    android:paddingRight="10dp"
+                    android:scaleType="fitCenter"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:background="#e3e3e3"
+                android:padding="4dp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/CommitteesItemLayout2">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:id="@+id/CommitteesItemImage2"
+                    android:layout_weight="0.2"
+                    android:src="@drawable/seal"
+                    android:foregroundGravity="left"
+                    android:scaleType="fitCenter"/>
+
+                <TextView
+                    android:layout_width="32dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/CommitteesItemText2"
+                    android:text="Senate Committee on Environment and Public Works"
+                    android:textColor="#222"
+                    android:textSize="12dp"
+                    android:gravity="center_vertical"
+
+                    android:layout_weight="0.8"
+                    android:paddingRight="10dp"
+                    android:scaleType="fitCenter"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:background="#e3e3e3"
+                android:padding="4dp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/CommitteesItemLayout3">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:id="@+id/CommitteesItemImage3"
+                    android:layout_weight="0.2"
+                    android:src="@drawable/seal"
+                    android:foregroundGravity="left"
+                    android:scaleType="fitCenter"/>
+
+                <TextView
+                    android:layout_width="32dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/CommitteesItemText3"
+                    android:text="Senate Committee on Commerce, Science, and Transportation"
+                    android:textColor="#222"
+                    android:textSize="12dp"
+                    android:gravity="center_vertical"
+
+                    android:layout_weight="0.8"
+                    android:paddingRight="10dp"
+                    android:scaleType="fitCenter"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:text="Sponsored Bills"
+            android:textSize="20dp"
+            android:layout_marginTop="12dp"
+            android:textColor="#fff"
+            android:background="#828282"
+            android:fontFamily="sans-serif"
+            android:id="@+id/LocationButton"
+            android:gravity="left"
+            android:padding="16dp"
+            android:textAllCaps="false"
+            android:layout_centerVertical="true"
+            android:layout_below="@+id/ZipButton"
+            android:onClick="BillContainerVisible"
+            android:layout_centerHorizontal="true" />
+
+        <LinearLayout
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:background="#e3e3e3"
+            android:padding="4dp"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/BillItemContainer"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:onClick="BillContainerVisible">
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:background="#e3e3e3"
+                android:padding="4dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/BillItemLayout">
+
+                <TextView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:id="@+id/BillItemDate"
+                    android:layout_weight="0.2"
+                    android:foregroundGravity="left"
+                    android:text="Feb 03\n2016"
+                    android:gravity="center"
+                    android:scaleType="fitCenter"/>
+
+                <TextView
+                    android:layout_width="32dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/BillItemText"
+                    android:text="S. 2487: Female Veteran Suicide Prevention Act"
+                    android:textColor="#222"
+                    android:textSize="12dp"
+                    android:gravity="center_vertical"
+
+                    android:layout_weight="0.8"
+                    android:paddingRight="10dp"
+                    android:scaleType="fitCenter"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:background="#e3e3e3"
+                android:padding="4dp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/BillItemLayout2">
+
+                <TextView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:id="@+id/BillItemDate2"
+                    android:layout_weight="0.2"
+                    android:text="Aug 05\n2015"
+                    android:foregroundGravity="left"
+                    android:gravity="center"
+                    android:scaleType="fitCenter"/>
+
+                <TextView
+                    android:layout_width="32dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/BillItemText2"
+                    android:text="S. 1983: Pechanga Band of Luiseno Mission Indians Water Rights Settlement Act "
+                    android:textColor="#222"
+                    android:textSize="12dp"
+                    android:gravity="center_vertical"
+
+                    android:layout_weight="0.8"
+                    android:paddingRight="10dp"
+                    android:scaleType="fitCenter"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:background="#e3e3e3"
+                android:padding="4dp"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/BillItemLayout3">
+
+                <TextView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:id="@+id/BillItemDate3"
+                    android:text="Dec 17\n2015"
+                    android:layout_weight="0.2"
+                    android:gravity="center"
+                    android:foregroundGravity="left"
+                    android:scaleType="fitCenter"/>
+
+                <TextView
+                    android:layout_width="32dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/BillItemText3"
+                    android:text="S. 2412: Tule Lake National Historic Site Establishment Act of 2015 "
+                    android:textColor="#222"
+                    android:textSize="12dp"
+                    android:gravity="center_vertical"
+
+                    android:layout_weight="0.8"
+                    android:paddingRight="10dp"
+                    android:scaleType="fitCenter"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    </RelativeLayout>
+
+    </ScrollView>
