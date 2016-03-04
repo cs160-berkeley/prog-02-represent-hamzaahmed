@@ -8,7 +8,7 @@ Hamza Ahmed ([hamza.ah@berkeley.edu](mailto:hamza.ah@berkeley.edu))
 
 ## Demo Video
 
-See [my demo video] (https://https://youtu.be/7xXJb1NRkIo)
+See [my demo video] (https://youtu.be/7xXJb1NRkIo)
 
 ## Screenshots
 
