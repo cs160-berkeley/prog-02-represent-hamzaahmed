@@ -79,7 +79,6 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
 
     @Override //alternate method to connecting: no longer create this in a new thread, but as a callback
     public void onConnected(Bundle bundle) {
-        Log.d("T", "Umm");
     }
 
     @Override //we need this to implement GoogleApiClient.ConnectionsCallback

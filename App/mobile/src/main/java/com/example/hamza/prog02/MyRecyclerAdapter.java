@@ -100,7 +100,6 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Cu
                 Uri uriUrl = null;
                 String party = congressItem.getParty();
                 if (party.equalsIgnoreCase("D")) {
-                    Log.d("T", "WTFFFF");
                     uriUrl = Uri.parse("https://www.democrats.org/");
                 } else if (party.equalsIgnoreCase("R")) {
                     uriUrl = Uri.parse("https://www.gop.com/");
@@ -128,7 +127,6 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Cu
         viewHolder.twitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("T", "DETECTING CLICK");
                 int visibility = viewHolder.twitterBox.getVisibility();
                 if (visibility == 0) {
                     viewHolder.twitterBox.setVisibility(View.GONE);

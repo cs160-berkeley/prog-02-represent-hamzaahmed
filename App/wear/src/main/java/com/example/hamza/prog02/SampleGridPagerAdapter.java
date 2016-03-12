@@ -72,7 +72,6 @@ public class SampleGridPagerAdapter extends FragmentGridPagerAdapter {
 
     public void parseResult(String CongressInfo) throws JSONException {
         try {
-            Log.d("T", "CONGRESS INFO: " + CongressInfo);
             //String temp = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             JSONObject legislatorDetails = new JSONObject(CongressInfo);
             JSONArray representatives = legislatorDetails.getJSONArray("results");
@@ -89,7 +88,7 @@ public class SampleGridPagerAdapter extends FragmentGridPagerAdapter {
                 String party = nextLegislator.getString("party");
                 String bioGuideId = nextLegislator.getString("bioguide_id");
 
-                CongressPeople.add(new CongressItem(firstName, lastName, title, mIcon, party));
+                CongressPeople.add(new CongressItem(firstName, lastName, title, bioGuideId, party));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,7 +97,6 @@ public class SampleGridPagerAdapter extends FragmentGridPagerAdapter {
 
     public void parseResult2(String CountyInfo) throws JSONException {
         try {
-            Log.d("T", "CountyInfo INFO: " + CountyInfo);
             JSONObject legislatorDetails = new JSONObject(CountyInfo);
             state = legislatorDetails.getString("state-postal");
             county = legislatorDetails.getString("county-name");
@@ -112,12 +110,11 @@ public class SampleGridPagerAdapter extends FragmentGridPagerAdapter {
     @Override
     public Fragment getFragment(int row, int col) {
         CongressItem page = (mPages.get(row)).getPages(col);
-        Log.d("T", "VOTE VIEW: " + page.getName());
         if (page.getName().equalsIgnoreCase("Vote View")) {
             VoteFragment fragment = VoteFragment.newInstance(county, state, ObamaVal, RomneyVal);
             return fragment;
         }
-        CustomCardFragment fragment = CustomCardFragment.newInstance(page.getName(), page.getTitle(), page.getParty(), page.getThumbnail());
+        CustomCardFragment fragment = CustomCardFragment.newInstance(page.getName(), page.getTitle(), page.getParty(), page.getBioguideId());
         return fragment;
     }
 

@@ -70,6 +70,8 @@ public class CongressionalViewActivity extends AppCompatActivity {
 
     private MyRecyclerAdapter adapter;
     private ProgressBar progressBar;
+    private TextView congressText;
+    private TextView countyText;
     //private TweetViewFetchAdapter adapter2;
 
     @Override
@@ -85,7 +87,13 @@ public class CongressionalViewActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(adapter);
 
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        progressBar.bringToFront();
         progressBar.setVisibility(View.VISIBLE);
+
+        countyText = (TextView) findViewById(R.id.county);
+        congressText = (TextView) findViewById(R.id.congress);
+        countyText.setVisibility(View.GONE);
+        congressText.setVisibility(View.GONE);
     }
 
     @Override
@@ -119,8 +127,6 @@ public class CongressionalViewActivity extends AppCompatActivity {
             url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude +  "&region=us";
         }
 
-        Log.d("T", "URLLLLLL: " + url2);
-        //final String url = "http://javatechig.com/?json=get_recent_posts&count=45";
         new AsyncHttpTask().execute(url, url2);
     }
 
@@ -140,8 +146,7 @@ public class CongressionalViewActivity extends AppCompatActivity {
                     URL url = new URL(params[i]);
                     urlConnection = (HttpURLConnection) url.openConnection();
                     int statusCode = urlConnection.getResponseCode();
-                    Log.d("T", statusCode + " hello");
-                    // 200 represents HTTP OK
+
                     if (statusCode == 200) {
                         BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
                         StringBuilder response = new StringBuilder();
@@ -154,23 +159,25 @@ public class CongressionalViewActivity extends AppCompatActivity {
                         } else {
                             parseResult2(response.toString());
                         }
-                        result = 1; // Successful
+                        result = 1;
                     } else {
-                        result = 0; //"Failed to fetch data!";
+                        result = 0;
                     }
                 }
             } catch (Exception e) {
                 Log.d(TAG, e.getLocalizedMessage());
             }
-            return result; //"Failed to fetch data!";
+            return result;
         }
 
         @Override
         protected void onPostExecute(Integer result) {
-            // Download complete. Let us update UI
             progressBar.setVisibility(View.GONE);
+            countyText.setVisibility(View.VISIBLE);
+            congressText.setVisibility(View.VISIBLE);
 
             if (result == 1 && results.size() == 2) {
+                countyText.setText(county + ", " + state);
                 Intent sendIntent = new Intent(CongressionalViewActivity.this, PhoneToWatchService.class);
                 sendIntent.putExtra("CongressInfo", results.get(1).toString() + "split" + results.get(0).toString());
                 startService(sendIntent);
@@ -236,7 +243,6 @@ public class CongressionalViewActivity extends AppCompatActivity {
             for (int i = 0; i < nextLegislator.length(); i++) {
                 JSONObject object = nextLegislator.getJSONObject(i);
                 String types = object.getString("types");
-                Log.d("T", "TYPE " + types);
                 if (types.toLowerCase().contains("administrative_area_level_2")) {
                     county = object.getString("short_name");
                 }
@@ -260,7 +266,6 @@ public class CongressionalViewActivity extends AppCompatActivity {
                 String countyname = object.getString("county-name");
                 if (state.contains(statename) && county.contains(countyname)) {
                     results.add(object);
-                    Log.d("T", "OBJECT " + object);
                     break;
                 }
             }
@@ -298,9 +303,6 @@ public class CongressionalViewActivity extends AppCompatActivity {
 
         Random generator = new Random();
         int i = generator.nextInt(COUNTRIES.size());
-
-        //for (String[] arr: COUNTRIES)
-        //    Log.d("T", "COUNTRIES:" + Arrays.toString(arr));
 
         return COUNTRIES.get(i);
     }

@@ -1,14 +1,40 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     android:padding="@dimen/activity_vertical_margin">
 
-    <view
-        android:id="@+id/recycler_view"
-        class="android.support.v7.widget.RecyclerView"
-        android:layout_width="300dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true" />
+        android:gravity="center"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Congress"
+            android:textColor="#222"
+            android:id="@+id/congress"
+            android:fontFamily="sans-serif"
+            android:textSize="24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Congress"
+            android:id="@+id/county"
+            android:fontFamily="sans-serif"
+            android:textSize="14dp"
+            android:layout_marginBottom="20dp"/>
+
+        <view
+            android:id="@+id/recycler_view"
+            class="android.support.v7.widget.RecyclerView"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true" />
+    </LinearLayout>
 
     <ProgressBar
         android:id="@+id/progress_bar"

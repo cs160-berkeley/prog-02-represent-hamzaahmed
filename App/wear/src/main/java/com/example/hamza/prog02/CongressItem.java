@@ -9,15 +9,15 @@ public class CongressItem {
     private String firstName;
     private String lastName;
     private String title;
-    private Bitmap thumbnail;
+    private String bioguideId;
     private String party;
 
 
-    public CongressItem(String firstName, String lastName, String title, Bitmap thumbnail, String party) {
+    public CongressItem(String firstName, String lastName, String title, String bioguideId, String party) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.title = title;
-        this.thumbnail = thumbnail;
+        this.bioguideId = bioguideId;
         this.party = party;
     }
 
@@ -47,13 +47,9 @@ public class CongressItem {
         return this.firstName + " " + this.lastName;
     }
 
-    public Bitmap getThumbnail() {
-        return this.thumbnail;
+    public String getBioguideId() {
+        return this.bioguideId;
     }
-
-//    //public void setThumbnail(int thumbnail) {
-//        this.thumbnail = thumbnail;
-//    }
 
     public String getParty() {
         return this.party;

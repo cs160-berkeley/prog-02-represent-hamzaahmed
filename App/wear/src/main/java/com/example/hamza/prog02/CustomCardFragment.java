@@ -37,15 +37,15 @@ import java.util.List;
 
 public class CustomCardFragment extends Fragment implements View.OnClickListener {
 
+    String bioguideId;
 
-
-    public static CustomCardFragment newInstance(String mName, String mPosition, String mParty, Bitmap mIconId) {
+    public static CustomCardFragment newInstance(String mName, String mPosition, String mParty, String mBioguideId) {
         CustomCardFragment fragmentDemo = new CustomCardFragment();
         Bundle args = new Bundle();
         args.putString("name", mName);
         args.putString("position", mPosition);
         args.putString("party", mParty);
-        args.putParcelable("iconId", mIconId);
+        args.putString("bioguideId", mBioguideId);
         fragmentDemo.setArguments(args);
         return fragmentDemo;
     }
@@ -62,7 +62,7 @@ public class CustomCardFragment extends Fragment implements View.OnClickListener
         String name = getArguments().getString("name", "");
         String position = getArguments().getString("position", "");
         String party = getArguments().getString("party", "");
-        Bitmap iconId = getArguments().getParcelable("iconId");
+        bioguideId = getArguments().getString("bioguideId", "");
 
         View partyIcon = v.findViewById(R.id.icon);
         partyIcon.bringToFront();
@@ -100,6 +100,7 @@ public class CustomCardFragment extends Fragment implements View.OnClickListener
         Intent sendIntent = new Intent(this.getActivity().getBaseContext(), WatchToPhoneService.class);
         sendIntent.putExtra("/send_signal", "click");
         sendIntent.putExtra("name", name);
+        sendIntent.putExtra("bioguide", bioguideId);
         this.getActivity().startService(sendIntent);
     }
 

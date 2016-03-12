@@ -2,6 +2,7 @@ package com.example.hamza.prog02;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
@@ -38,11 +39,12 @@ public class DetailedViewActivity extends AppCompatActivity {
     private String title;
     private String party;
     private String termEnd;
-    private String bioguideID;
+    private String bioguideId;
     private String committeeName;
     private String billName;
     private String billDate;
     private Bitmap thumbnail;
+
 
     private RecyclerView mRecyclerView;
     private RecyclerView mRecyclerView2;
@@ -81,8 +83,7 @@ public class DetailedViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String apiKey = "b77ebc6b16a64f1ab2a2a1c8d0271963";
-                String url = "https://congress.api.sunlightfoundation.com/committees?member_ids=" + bioguideID + "&apikey=" + apiKey;
-                Log.d("T", "URLLLLLL: " + url);
+                String url = "https://congress.api.sunlightfoundation.com/committees?member_ids=" + bioguideId + "&apikey=" + apiKey;
                 new AsyncHttpTask().execute(url, "committee");
             }
         });
@@ -91,8 +92,7 @@ public class DetailedViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String apiKey = "b77ebc6b16a64f1ab2a2a1c8d0271963";
-                String url = "https://congress.api.sunlightfoundation.com/bills?sponsor_id=" + bioguideID + "&apikey=" + apiKey;
-                Log.d("T", "URLLLLLL: " + url);
+                String url = "https://congress.api.sunlightfoundation.com/bills?sponsor_id=" + bioguideId + "&apikey=" + apiKey;
                 new AsyncHttpTask().execute(url, "bill");
             }
         });
@@ -107,13 +107,12 @@ public class DetailedViewActivity extends AppCompatActivity {
         if (extras != null) {
             firstName = extras.getString("firstName");
             lastName = extras.getString("lastName");
-            thumbnail = extras.getParcelable("thumbnail");
+            //thumbnail = extras.getParcelable("thumbnail");
         }
 
         // Downloading data from below url
         String apiKey = "b77ebc6b16a64f1ab2a2a1c8d0271963";
         String url = "https://congress.api.sunlightfoundation.com/legislators?first_name="+ firstName + "&last_name="+ lastName +"&apikey=" + apiKey;
-        Log.d("T", "URLLLLLL: " + url);
         new AsyncHttpTask().execute(url, "member");
     }
 
@@ -135,7 +134,6 @@ public class DetailedViewActivity extends AppCompatActivity {
                 callType = params[1];
                 urlConnection = (HttpURLConnection) url.openConnection();
                 int statusCode = urlConnection.getResponseCode();
-                Log.d("T", statusCode + " hello");
                 // 200 represents HTTP OK
                 if (statusCode == 200) {
                     BufferedReader r = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
@@ -144,14 +142,11 @@ public class DetailedViewActivity extends AppCompatActivity {
                     while ((line = r.readLine()) != null) {
                         response.append(line);
                     }
-                    Log.d("T", "YESSSSSS");
                     if (callType == "member") {
                         parseMember(response.toString());
                     } else if (callType == "committee") {
-                        Log.d("T", "CALLING PARSE COMMITTEES");
                         parseCommittees(response.toString());
                     }  else if (callType == "bill") {
-                        Log.d("T", "CALLING PARSE BILLS");
                         parseBills(response.toString());
                     }
                     result = 1; // Successful
@@ -227,7 +222,6 @@ public class DetailedViewActivity extends AppCompatActivity {
             JSONArray representatives = legislatorDetails.getJSONArray("results");
 
             if (representatives.length() == 0) {
-                Log.d("T", "LENGTH IS 0");
                 return;
             }
 
@@ -245,10 +239,11 @@ public class DetailedViewActivity extends AppCompatActivity {
                 party = "Independent";
             }
             termEnd = nextLegislator.getString("term_end");
-            bioguideID = nextLegislator.getString("bioguide_id");
+            bioguideId = nextLegislator.getString("bioguide_id");
+            URL newurl = new URL("https://theunitedstates.io/images/congress/225x275/" + bioguideId + ".jpg");
+            thumbnail = BitmapFactory.decodeStream(newurl.openConnection().getInputStream());
 
-
-        } catch (JSONException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -267,9 +262,6 @@ public class DetailedViewActivity extends AppCompatActivity {
 
                 committeeName = nextCommittee.getString("name");
                 committeesList.add(committeeName);
-                Log.d("T", "COMMITTEE NAME" + committeeName);
-
-
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -290,7 +282,6 @@ public class DetailedViewActivity extends AppCompatActivity {
                 JSONObject nextBill = bills.getJSONObject(i);
 
                 billName = nextBill.getString("short_title");
-                Log.d("T", "BILL NAME: " + billName);
                 if (billName.equalsIgnoreCase("null")) {
                     billName = nextBill.getString("official_title");
                 }
