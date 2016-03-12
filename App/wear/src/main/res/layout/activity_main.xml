@@ -19,7 +19,7 @@
         <TextView android:id="@+id/time"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="E L E C T I O N"
+            android:text="Represent"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:textSize="24dp"

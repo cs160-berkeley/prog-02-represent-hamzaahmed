@@ -49,10 +49,10 @@ public class PhoneListenerService extends WearableListenerService {
 
         } else if (messageEvent.getPath().equalsIgnoreCase(SHAKE)) {
             Intent intent = new Intent(this, CongressionalViewActivity.class);
-            String[] LatLong = randomLatLong();
-            intent.putExtra("randomLatLong", LatLong[0] + "," + LatLong[1]);
+            //String[] LatLong = randomLatLong();
+            intent.putExtra("randomLatLong", "yes");
             String newLocation = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-            Toast.makeText(this, "New location:" + Arrays.toString(LatLong), Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "New location:" + Arrays.toString(LatLong), Toast.LENGTH_LONG).show();
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             this.startActivity(intent);
 
@@ -60,40 +60,5 @@ public class PhoneListenerService extends WearableListenerService {
             super.onMessageReceived( messageEvent );
         }
 
-    }
-
-    public String[] randomLatLong() {
-        ArrayList<String[]> COUNTRIES = new ArrayList<>();
-        InputStreamReader is = null;
-        try {
-            is = new InputStreamReader(getResources().openRawResource(getResources().getIdentifier("country", "raw", getPackageName())));
-
-            BufferedReader reader = new BufferedReader(is);
-            //BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] cols = line.split("\\s*,\\s*");
-                COUNTRIES.add(cols);
-            }
-        }
-        catch (Exception ex) {
-            // handle exception
-        }
-        finally {
-            try {
-                is.close();
-            }
-            catch (Exception e) {
-                // handle exception
-            }
-        }
-
-        Random generator = new Random();
-        int i = generator.nextInt(COUNTRIES.size());
-
-        //for (String[] arr: COUNTRIES)
-        //    Log.d("T", "COUNTRIES:" + Arrays.toString(arr));
-
-        return COUNTRIES.get(i);
     }
 }

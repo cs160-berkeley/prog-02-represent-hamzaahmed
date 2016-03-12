@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.support.wearable.view.GridViewPager;
 import android.util.Log;
+import android.widget.Toast;
 
 public class CongressionalView extends Activity {
 
@@ -36,6 +37,7 @@ public class CongressionalView extends Activity {
 
             public void onShake() {
                 Intent sendIntent = new Intent(CongressionalView.this, WatchToPhoneService.class);
+                Toast.makeText(getApplicationContext(), "Selecting new location", Toast.LENGTH_LONG).show();
                 sendIntent.putExtra("/send_signal", "shake");
                 startService(sendIntent);
             }

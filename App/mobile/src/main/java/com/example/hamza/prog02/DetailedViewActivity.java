@@ -192,6 +192,8 @@ public class DetailedViewActivity extends AppCompatActivity {
 
                     titleText.setText(title);
                     TextView term = (TextView) findViewById(R.id.termEnd);
+                    //TextView partyText = (TextView) findViewById(R.id.termEnd);
+
                     term.setText(termEnd.substring(0, 4));
                     LinearLayout partyBox = (LinearLayout) findViewById(R.id.partyBox);
                     if (party.equalsIgnoreCase("Democrat")) {

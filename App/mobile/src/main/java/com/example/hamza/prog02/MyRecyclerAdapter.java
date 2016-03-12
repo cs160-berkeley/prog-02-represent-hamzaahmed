@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,20 +62,25 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Cu
 
         LinearLayout partyBox = (LinearLayout) view.findViewById(R.id.partyBox);
         ImageView partyIcon = (ImageView) view.findViewById(R.id.partyIcon);
+        TextView partyText = (TextView) view.findViewById(R.id.partyText);
+
         viewHolder.thumbnail.setImageBitmap(congressItem.getThumbnail());
 
         if (congressItem.getParty().equalsIgnoreCase("D")) {
             partyBox.setBackgroundColor(ContextCompat.getColor(mContext, R.color.democrat));
             partyIcon.setBackgroundResource(R.drawable.democrat);
+            partyText.setText("Democrat");
         } else if (congressItem.getParty().equalsIgnoreCase("R")){
             partyBox.setBackgroundColor(ContextCompat.getColor(mContext, R.color.republican));
             partyIcon.setBackgroundResource(R.drawable.rebulican);
+            partyText.setText("Republican");
         } else if (congressItem.getParty().equalsIgnoreCase("I")) {
             partyBox.setBackgroundColor(ContextCompat.getColor(mContext, R.color.independent));
             partyIcon.setBackgroundResource(R.drawable.twitter);
+            partyText.setText("Independent");
         }
 
-        viewHolder.thumbnail.setOnClickListener(new View.OnClickListener() {
+        viewHolder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DetailedViewActivity.class);
@@ -170,6 +176,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Cu
         protected TextView title;
         protected ImageView thumbnail;
         protected ImageView party;
+        protected RelativeLayout card;
         protected ImageView email;
         protected ImageView website;
         protected ImageView twitter;
@@ -177,6 +184,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Cu
 
         public CustomViewHolder(View view) {
             super(view);
+            this.card = (RelativeLayout) view.findViewById(R.id.card);
             this.imageView = (ImageView) view.findViewById(R.id.thumbnail);
             this.name = (TextView) view.findViewById(R.id.name);
             this.title = (TextView) view.findViewById(R.id.title);

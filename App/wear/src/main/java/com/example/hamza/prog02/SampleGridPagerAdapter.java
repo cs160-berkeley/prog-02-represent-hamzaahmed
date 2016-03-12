@@ -89,40 +89,10 @@ public class SampleGridPagerAdapter extends FragmentGridPagerAdapter {
                 String party = nextLegislator.getString("party");
                 String bioGuideId = nextLegislator.getString("bioguide_id");
 
-                String url = "https://theunitedstates.io/images/congress/225x275/" + bioGuideId + ".jpg";
-                new AsyncHttpTask().execute(url);
                 CongressPeople.add(new CongressItem(firstName, lastName, title, mIcon, party));
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    public class AsyncHttpTask extends AsyncTask<String, Void, Integer> {
-
-        @Override
-        protected Integer doInBackground(String... params) {
-            Integer result = 0;
-            HttpURLConnection urlConnection;
-            try {
-                for (int i = 0; i < 2; i++) {
-                    URL url = new URL(params[i]);
-                    //urlConnection = (HttpURLConnection) url.openConnection();
-                    //int statusCode = urlConnection.getResponseCode();
-                    Log.d("T", " hello");
-                    // 200 represents HTTP OK
-                    //if (statusCode == 200) {
-                    mIcon = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                    result = 1; // Successful
-                   // } else {
-                     //   Log.d("T", "FAILED");
-                     //   result = 0; //"Failed to fetch data!";
-                   // }
-                }
-            } catch (Exception e) {
-                Log.d("T", e.getLocalizedMessage());
-            }
-            return result; //"Failed to fetch data!";
         }
     }
 

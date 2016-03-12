@@ -14,7 +14,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.hamza.prog02.CongressionalViewActivity"
-    android:visibility="visible">
+    android:visibility="visible"
+    android:gravity="center">
 
 
     <ProgressBar
@@ -25,7 +26,7 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="fill_parent"
+        android:layout_width="300dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:layout_height="match_parent"
@@ -36,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:gravity="center"
             android:textColor="#222"
             android:layout_marginBottom="5dp"
@@ -49,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:textSize="14dp"
+            android:textSize="12dp"
             android:gravity="center"
             android:textColor="#222"
             android:layout_marginBottom="15dp"
@@ -58,8 +59,8 @@
             android:enabled="false" />
 
         <ImageView
-            android:layout_width="320dp"
-            android:layout_height="320dp"
+            android:layout_width="225dp"
+            android:layout_height="275dp"
             android:id="@+id/thumbnail"
             android:background="#000"
             android:scaleType="fitXY"
@@ -68,52 +69,41 @@
             android:padding="0dp" />
 
         <LinearLayout
-            android:layout_width="320dp"
+            android:layout_width="225dp"
             android:layout_height="wrap_content"
-            android:background="#2F80ED"
-            android:padding="16dp"
+            android:padding="8dp"
             android:layout_below="@+id/FirstBox"
             android:layout_centerHorizontal="true"
-            android:id="@+id/partyBox">
-
-            <LinearLayout
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/partBox">
+            android:id="@+id/partyBox"
+            android:gravity="center">
 
                 <ImageView
-                    android:layout_width="34dp"
-                    android:layout_height="28dp"
+                    android:layout_width="28dp"
+                    android:layout_height="22dp"
                     android:id="@+id/partyIcon"
                     android:scaleType="fitXY"
-                    android:layout_marginLeft="30dp"
                     android:layout_gravity="center"
-                    android:layout_centerHorizontal="true"/>
+                    android:layout_centerHorizontal="true" />
 
-            </LinearLayout>
 
             <TextView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/party"
                 android:textColor="#fff"
-                android:textSize="24dp"
-                android:text="Democrat"
-                android:layout_weight="1"
+                android:textSize="14dp"
                 android:scaleType="fitCenter"
                 android:layout_alignTop="@+id/fourthIcon2"
-                android:layout_toEndOf="@+id/linearLayout" />
+                android:layout_toEndOf="@+id/linearLayout"
+                android:layout_marginLeft="20dp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#828282"
-            android:padding="16dp"
+            android:background="@color/black"
+            android:padding="8dp"
             android:layout_marginTop="40dp"
             android:layout_above="@+id/partyBox"
             android:layout_centerHorizontal="true"
@@ -125,7 +115,7 @@
                 android:id="@+id/TermCaption"
                 android:text="Term Ends"
                 android:textColor="#fff"
-                android:textSize="20dp"
+                android:textSize="14dp"
                 android:layout_weight="1"
                 android:paddingLeft="10dp"
                 android:scaleType="fitCenter"
@@ -135,7 +125,7 @@
                 android:layout_height="32dp"
                 android:id="@+id/termEnd"
                 android:textColor="#fff"
-                android:textSize="20dp"
+                android:textSize="14dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical|right"
                 android:paddingRight="10dp"
@@ -143,27 +133,27 @@
             </LinearLayout>
 
         <Button
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Active Committees"
-            android:textSize="20dp"
+            android:textSize="14dp"
             android:id="@+id/committeesContainer"
             android:layout_marginTop="12dp"
-            android:gravity="left"
+            android:gravity="left|center_vertical"
             android:fontFamily="sans-serif"
-            android:padding="16dp"
             android:textColor="#fff"
             android:textAllCaps="false"
-            android:background="#828282"
+            android:background="@color/black"
             android:layout_centerVertical="true"
             android:layout_below="@+id/ActionText"
             android:onClick="CommitteeContainerVisible"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:paddingLeft="16dp" />
 
 
 
         <LinearLayout
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="4dp"
             android:layout_centerHorizontal="true"
@@ -171,27 +161,35 @@
             android:orientation="vertical"
             android:visibility="gone">
 
-            <view
+            <ScrollView
+                android:id="@+id/scrollablContent"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_weight="1">
+
+                <view
                 android:id="@+id/recycler_view"
                 class="android.support.v7.widget.RecyclerView"
-                android:layout_width="320dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true" />
+
+            </ScrollView>
 
         </LinearLayout>
 
         <Button
-            android:layout_width="320dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sponsored Bills"
-            android:textSize="20dp"
+            android:textSize="14dp"
             android:layout_marginTop="12dp"
             android:textColor="#fff"
-            android:background="#828282"
+            android:background="@color/black"
             android:fontFamily="sans-serif"
             android:id="@+id/billContainer"
-            android:gravity="left"
-            android:padding="16dp"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="16dp"
             android:textAllCaps="false"
             android:layout_centerVertical="true"
             android:layout_below="@+id/ZipButton"
@@ -208,6 +206,11 @@
             android:visibility="gone"
             android:onClick="BillContainerVisible">
 
+            <ScrollView
+                android:id="@+id/scrollablContent2"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_weight="1">
 
             <view
                 android:id="@+id/recycler_view2"
@@ -216,71 +219,7 @@
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true" />
 
-            <!--
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:background="#e3e3e3"
-                android:padding="4dp"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/BillItemLayout2">
-
-                <TextView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:id="@+id/BillItemDate2"
-                    android:layout_weight="0.2"
-                    android:text="Aug 05\n2015"
-                    android:foregroundGravity="left"
-                    android:gravity="center"
-                    android:scaleType="fitCenter"/>
-
-                <TextView
-                    android:layout_width="32dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/BillItemText2"
-                    android:text="S. 1983: Pechanga Band of Luiseno Mission Indians Water Rights Settlement Act "
-                    android:textColor="#222"
-                    android:textSize="12dp"
-                    android:gravity="center_vertical"
-
-                    android:layout_weight="0.8"
-                    android:paddingRight="10dp"
-                    android:scaleType="fitCenter"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:background="#e3e3e3"
-                android:padding="4dp"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/BillItemLayout3">
-
-                <TextView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:id="@+id/BillItemDate3"
-                    android:text="Dec 17\n2015"
-                    android:layout_weight="0.2"
-                    android:gravity="center"
-                    android:foregroundGravity="left"
-                    android:scaleType="fitCenter"/>
-
-                <TextView
-                    android:layout_width="32dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/BillItemText3"
-                    android:text="S. 2412: Tule Lake National Historic Site Establishment Act of 2015 "
-                    android:textColor="#222"
-                    android:textSize="12dp"
-                    android:gravity="center_vertical"
-
-                    android:layout_weight="0.8"
-                    android:paddingRight="10dp"
-                    android:scaleType="fitCenter"/>
-            </LinearLayout>
-            -->
+            </ScrollView>
 
         </LinearLayout>
 

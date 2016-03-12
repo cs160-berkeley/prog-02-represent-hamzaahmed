@@ -17,6 +17,14 @@
         android:layout_height="220dp">
 
         <LinearLayout
+            android:id="@+id/whiteBorder"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:orientation="vertical"
+            android:background="#fff">
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/NameLayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -35,7 +43,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:textSize="14dp"
                 android:textColor="#fff"
-                android:background="#2F80ED"
+                android:background="@color/democrat"
                 android:gravity="center"
                 android:layout_marginBottom="10dp" />
 
@@ -48,7 +56,7 @@
                 android:gravity="center"
                 android:textColor="#fff"
                 android:textSize="14dp"
-                android:background="@color/red"
+                android:background="@color/republican"
                 android:layout_marginBottom="10dp" />
 
 

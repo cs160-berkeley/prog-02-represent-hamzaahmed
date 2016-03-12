@@ -65,8 +65,9 @@ public class CustomCardFragment extends Fragment implements View.OnClickListener
         Bitmap iconId = getArguments().getParcelable("iconId");
 
         View partyIcon = v.findViewById(R.id.icon);
+        partyIcon.bringToFront();
         View nameView = v.findViewById(R.id.name);
-        View partyBox = v.findViewById(R.id.feed_btn);
+        View partyBox = v.findViewById(R.id.bg);
         ImageView thumbnail = (ImageView) v.findViewById(R.id.img);
 
         //thumbnail.setImageBitmap(iconId);

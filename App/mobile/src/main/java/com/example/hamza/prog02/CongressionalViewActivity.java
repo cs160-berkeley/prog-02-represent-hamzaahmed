@@ -46,6 +46,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class CongressionalViewActivity extends AppCompatActivity {
@@ -62,7 +63,8 @@ public class CongressionalViewActivity extends AppCompatActivity {
     String state = null;
     JSONObject legislatorDetails = null;
     public Location LastLocation;
-
+    String[] randomLatLongPair = null;
+    String apiKey = "b77ebc6b16a64f1ab2a2a1c8d0271963";
     ArrayList<JSONObject> results = new ArrayList<>();
 
 
@@ -97,14 +99,18 @@ public class CongressionalViewActivity extends AppCompatActivity {
             randomLatLong = extras.getString("randomLatLong");
         }
 
+        results = new ArrayList<>();
+
         // Downloading data from below url
-        String apiKey = "b77ebc6b16a64f1ab2a2a1c8d0271963";
         String url = null;
         String url2 = null;
         if (randomLatLong != null) {
-            String[] temp = randomLatLong.split(",");
-            url2 = "https://congress.api.sunlightfoundation.com/legislators/locate?latitude=" + temp[0] + "&longitude=" + temp[1]  + "&apikey=" + apiKey;
-            url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + temp[0]  + "," + temp[1] +  "&region=us";
+            randomLatLongPair = randomLatLong();
+            //String[] temp = randomLatLongPair.split(",");
+            latitude = randomLatLongPair[0];
+            longitude = randomLatLongPair[1];
+            url2 = "https://congress.api.sunlightfoundation.com/legislators/locate?latitude=" + latitude + "&longitude=" + longitude  + "&apikey=" + apiKey;
+            url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude +  "&region=us";
         } else if (zipCode != null) {
             url2 = "https://congress.api.sunlightfoundation.com/legislators/locate?zip=" + zipCode + "&apikey=" + apiKey;
             url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + zipCode + "&region=us";
@@ -164,15 +170,25 @@ public class CongressionalViewActivity extends AppCompatActivity {
             // Download complete. Let us update UI
             progressBar.setVisibility(View.GONE);
 
-            if (result == 1) {
+            if (result == 1 && results.size() == 2) {
                 Intent sendIntent = new Intent(CongressionalViewActivity.this, PhoneToWatchService.class);
-                Log.d("T", "FIRST " + results.get(0).toString());
                 sendIntent.putExtra("CongressInfo", results.get(1).toString() + "split" + results.get(0).toString());
                 startService(sendIntent);
                 adapter = new MyRecyclerAdapter(CongressionalViewActivity.this, feedsList);
                 mRecyclerView.setAdapter(adapter);
             } else {
-                Toast.makeText(CongressionalViewActivity.this, "Failed to fetch data!", Toast.LENGTH_SHORT).show();
+                if (randomLatLong != null) {
+                    results = new ArrayList<>();
+                    randomLatLongPair = randomLatLong();
+                    latitude = randomLatLongPair[0];
+                    longitude = randomLatLongPair[1];
+                    String url2 = "https://congress.api.sunlightfoundation.com/legislators/locate?latitude=" + latitude + "&longitude=" + longitude  + "&apikey=" + apiKey;
+                    String url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + latitude + "," + longitude +  "&region=us";
+                    new AsyncHttpTask().execute(url, url2);
+                }
+                Toast.makeText(CongressionalViewActivity.this, "Sorry, the APIs do not work on your location. " + results.size(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(CongressionalViewActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         }
     }
@@ -252,6 +268,41 @@ public class CongressionalViewActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public String[] randomLatLong() {
+        ArrayList<String[]> COUNTRIES = new ArrayList<>();
+        InputStreamReader is = null;
+        try {
+            is = new InputStreamReader(getResources().openRawResource(getResources().getIdentifier("country", "raw", getPackageName())));
+
+            BufferedReader reader = new BufferedReader(is);
+            //BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] cols = line.split("\\s*,\\s*");
+                COUNTRIES.add(cols);
+            }
+        }
+        catch (Exception ex) {
+            // handle exception
+        }
+        finally {
+            try {
+                is.close();
+            }
+            catch (Exception e) {
+                // handle exception
+            }
+        }
+
+        Random generator = new Random();
+        int i = generator.nextInt(COUNTRIES.size());
+
+        //for (String[] arr: COUNTRIES)
+        //    Log.d("T", "COUNTRIES:" + Arrays.toString(arr));
+
+        return COUNTRIES.get(i);
     }
 }
 

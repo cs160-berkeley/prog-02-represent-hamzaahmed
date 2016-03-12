@@ -6,4 +6,5 @@
     <color name="democrat">#2A53C1</color>
     <color name="republican">#DC2039</color>
     <color name="independent">#BDBDBD</color>
+    <color name="black">#333333</color>
 </resources>

@@ -48,7 +48,9 @@ public class VoteFragment extends Fragment {
         TextView tv = (TextView) v.findViewById(R.id.icon2);
         TextView tv2 = (TextView) v.findViewById(R.id.name2);
         TextView countyView = (TextView) v.findViewById(R.id.county);
+        LinearLayout whiteBox = (LinearLayout) v.findViewById(R.id.whiteBorder);
 
+        whiteBox.bringToFront();
 
         double obama_val = obamaVal / 100.0;
         Log.d("T", obama_val + "");

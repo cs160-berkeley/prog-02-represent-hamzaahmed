@@ -63,7 +63,6 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
                         //finally, we can send a message
                         mWatchApiClient.connect();
                         if (event.equals("shake")) {
-                            Toast.makeText(getApplicationContext(), "New location", Toast.LENGTH_LONG).show();
                             sendMessage("/send_shake", "");
                         } else if (event.equals("click")) {
                             sendMessage("/send_click", extras.getString("name"));
