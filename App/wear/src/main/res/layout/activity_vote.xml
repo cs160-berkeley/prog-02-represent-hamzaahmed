@@ -35,7 +35,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:textSize="14dp"
                 android:textColor="#fff"
-                android:background="@color/red"
+                android:background="#2F80ED"
                 android:gravity="center"
                 android:layout_marginBottom="10dp" />
 
@@ -48,7 +48,7 @@
                 android:gravity="center"
                 android:textColor="#fff"
                 android:textSize="14dp"
-                android:background="#2F80ED"
+                android:background="@color/red"
                 android:layout_marginBottom="10dp" />
 
 
@@ -90,7 +90,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="2012 Vote"
-                    android:layout_marginLeft="8dp"
                     android:gravity="center"
                     android:textColor="#222"
                     android:fontFamily="sans-serif"
@@ -108,7 +107,8 @@
                 android:layout_below="@+id/NameLayout"
                 android:textColor="#222"
                 android:layout_gravity="center_horizontal"
-                android:id="@+id/position" />
+                android:id="@+id/county"
+                android:gravity="center" />
 
 
         </LinearLayout>

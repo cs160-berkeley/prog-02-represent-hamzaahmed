@@ -14,27 +14,19 @@
 
 
     <RelativeLayout android:layout_width="match_parent"
-        android:layout_height="220dp">
+        android:layout_height="match_parent">
 
-
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/barbara"
-            android:layout_margin="0dp" />
 
         <LinearLayout
             android:id="@+id/feed_btn"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="#2F80ED"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="158dp">
+            android:layout_alignParentTop="false"
+            android:layout_alignParentStart="false"
+            android:layout_marginTop="0dp"
+            android:gravity="center">
 
 
             <LinearLayout
@@ -59,22 +51,24 @@
                     android:text="Barbara Boxer"
                     android:layout_marginLeft="8dp"
                     android:gravity="center"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="Avenir"
                     android:textSize="14dp"
-                    android:id="@+id/name" />
+                    android:id="@+id/name"
+                    android:layout_gravity="center" />
 
             </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Senator"
                 android:fontFamily="sans-serif-light"
                 android:textSize="10dp"
                 android:layout_below="@+id/NameLayout"
                 android:textColor="#c0c0c0"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/position" />
+                android:layout_gravity="center"
+                android:id="@+id/position"
+                android:gravity="center" />
 
 
         </LinearLayout>

@@ -88,6 +88,16 @@
             android:layout_below="@+id/ZipButton"
             android:layout_centerHorizontal="true" />
 
+
+        <com.twitter.sdk.android.core.identity.TwitterLoginButton
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center" />
+
+
     </RelativeLayout>
 
 </RelativeLayout>

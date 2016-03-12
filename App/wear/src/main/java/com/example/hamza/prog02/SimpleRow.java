@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class SimpleRow {
 
-    ArrayList<SimplePage> mPagesRow = new ArrayList<SimplePage>();
+    ArrayList<CongressItem> mPagesRow = new ArrayList<CongressItem>();
 
-    public void addPages(SimplePage page) {
+    public void addPages(CongressItem page) {
         mPagesRow.add(page);
     }
 
-    public SimplePage getPages(int index) {
+    public CongressItem getPages(int index) {
         return mPagesRow.get(index);
     }
 

@@ -3,6 +3,8 @@
     package="com.example.hamza.prog02">
 
     <uses-feature android:name="android.hardware.type.watch" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -10,6 +12,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.DeviceDefault">
+        <uses-permission android:name="android.permission.INTERNET"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
@@ -43,10 +46,11 @@
             android:name=".CongressionalView"
             android:label="@string/title_activity_congressional_view" />
 
-        <service
-            android:name=".ShakeDetector"
-            android:enabled="true"
-            android:exported="true"></service>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="193ba2ca22ff9230fed177b8a52c7d0591fc9331" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

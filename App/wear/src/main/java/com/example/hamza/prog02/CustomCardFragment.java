@@ -3,11 +3,14 @@ package com.example.hamza.prog02;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.v4.content.ContextCompat;
 import android.support.wearable.view.CardFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +20,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.wearable.MessageEvent;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
+
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Hamza on 2/29/16.
@@ -27,12 +39,13 @@ public class CustomCardFragment extends Fragment implements View.OnClickListener
 
 
 
-    public static CustomCardFragment newInstance(String mName, String mPosition, int mIconId) {
+    public static CustomCardFragment newInstance(String mName, String mPosition, String mParty, Bitmap mIconId) {
         CustomCardFragment fragmentDemo = new CustomCardFragment();
         Bundle args = new Bundle();
         args.putString("name", mName);
         args.putString("position", mPosition);
-        args.putInt("iconId", mIconId);
+        args.putString("party", mParty);
+        args.putParcelable("iconId", mIconId);
         fragmentDemo.setArguments(args);
         return fragmentDemo;
     }
@@ -48,16 +61,33 @@ public class CustomCardFragment extends Fragment implements View.OnClickListener
         View v = inflater.inflate(R.layout.custom_card_fragment, container, false);
         String name = getArguments().getString("name", "");
         String position = getArguments().getString("position", "");
-        int iconId = getArguments().getInt("iconId", 0);
-        View iconView = v.findViewById(R.id.icon);
+        String party = getArguments().getString("party", "");
+        Bitmap iconId = getArguments().getParcelable("iconId");
+
+        View partyIcon = v.findViewById(R.id.icon);
         View nameView = v.findViewById(R.id.name);
+        View partyBox = v.findViewById(R.id.feed_btn);
+        ImageView thumbnail = (ImageView) v.findViewById(R.id.img);
+
+        //thumbnail.setImageBitmap(iconId);
+
+        if (party.equalsIgnoreCase("D")) {
+            partyBox.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.democrat));
+            partyIcon.setBackgroundResource(R.drawable.democrat);
+        } else if (party.equalsIgnoreCase("R")){
+            partyBox.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.republican));
+            partyIcon.setBackgroundResource(R.drawable.rebulican);
+        } else if (party.equalsIgnoreCase("I")) {
+            partyBox.setBackgroundColor(ContextCompat.getColor(getActivity().getApplicationContext(), R.color.independent));
+            partyIcon.setBackgroundResource(R.drawable.rebulican);
+        }
         View clickListener = v.findViewById(R.id.clickListener);
         View positionView = v.findViewById(R.id.position);
         ((TextView) nameView).setText(name);
         ((TextView) positionView).setText(position);
         clickListener.setOnClickListener(this);
-        Drawable d = getResources().getDrawable(iconId, this.getActivity().getTheme());
-        iconView.setBackground(d);
+       // Drawable d = getResources().getDrawable(iconId, this.getActivity().getTheme());
+        //iconView.setBackground(d);
         return v;
     }
 

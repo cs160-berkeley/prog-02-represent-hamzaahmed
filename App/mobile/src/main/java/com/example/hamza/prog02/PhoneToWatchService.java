@@ -12,6 +12,8 @@ import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 
+import java.util.Arrays;
+
 /**
  * Created by joleary on 2/19/16.
  */
@@ -52,8 +54,7 @@ public class PhoneToWatchService extends Service {
             return START_STICKY;
         }
         Bundle extras = intent.getExtras();
-        final String ZipCode = extras.getString("Location");
-
+        final String CongressInfo = extras.getString("CongressInfo");
         // Send the message with the cat name
         new Thread(new Runnable() {
             @Override
@@ -62,11 +63,10 @@ public class PhoneToWatchService extends Service {
                 mApiClient.connect();
                 //now that you're connected, send a massage with the cat name
 
-
-                sendMessage("/" + ZipCode, ZipCode);
+                Log.d("T", "SENDING CONGRESS INFO: " + CongressInfo);
+                sendMessage("/" + CongressInfo, CongressInfo);
             }
         }).start();
-
         return START_STICKY;
     }
 
@@ -85,7 +85,7 @@ public class PhoneToWatchService extends Service {
                 for(Node node : nodes.getNodes()) {
                     //we find 'nodes', which are nearby bluetooth devices (aka emulators)
                     //send a message for each of these nodes (just one, for an emulator)
-                    Log.d("T", "SENDING MESSSAGE");
+                    //Log.d("T", "SENDING MESSSAGE");
                     byte[] bytes = null;
                     if (text != "") {
                         bytes = text.getBytes();

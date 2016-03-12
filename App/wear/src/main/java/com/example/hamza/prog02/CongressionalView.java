@@ -20,8 +20,15 @@ public class CongressionalView extends Activity {
         setContentView(R.layout.grid);
 
         final GridViewPager mGridPager = (GridViewPager) findViewById(R.id.pager);
-        mGridPager.setAdapter(new SampleGridPagerAdapter(this, getFragmentManager()));
+        Bundle extras = getIntent().getExtras();
+        final String CongressInfo = extras.getString("CongressInfo");
+        final String CountyInfo = extras.getString("CountyInfo");
 
+        try {
+            mGridPager.setAdapter(new SampleGridPagerAdapter(this, getFragmentManager(), CongressInfo, CountyInfo));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorListener = new ShakeDetector();
 

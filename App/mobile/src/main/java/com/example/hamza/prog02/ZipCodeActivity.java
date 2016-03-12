@@ -34,17 +34,14 @@ public class ZipCodeActivity extends AppCompatActivity {
                         case KeyEvent.KEYCODE_DPAD_CENTER:
                         case KeyEvent.KEYCODE_ENTER:
 
-                            Intent sendIntent = new Intent(ZipCodeActivity.this, PhoneToWatchService.class);
+                            //Intent sendIntent = new Intent(ZipCodeActivity.this, PhoneToWatchService.class);
                             EditText ZipCode = (EditText) findViewById(R.id.editZip);
                             String ZipText = ZipCode.getText().toString();
-                            if (ZipText.length() != 5) {
-                                Toast.makeText(getApplicationContext(), "Zip code must be 5 digits", Toast.LENGTH_LONG).show();
-                                ZipCode.setText("");
-                            } else {
-                                sendIntent.putExtra("Location", ZipText);
-                                startService(sendIntent);
-                                startActivity(new Intent(ZipCodeActivity.this, CongressionalViewActivity.class));
-                            }
+                            // sendIntent.putExtra("zipCode", ZipText);
+                            // startService(sendIntent);
+                            Intent intent = new Intent(ZipCodeActivity.this, CongressionalViewActivity.class);
+                            intent.putExtra("zipCode", ZipText);
+                            startActivity(intent);
                             return true;
                         default:
                             break;

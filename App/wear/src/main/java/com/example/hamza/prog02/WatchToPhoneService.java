@@ -63,10 +63,8 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
                         //finally, we can send a message
                         mWatchApiClient.connect();
                         if (event.equals("shake")) {
-                            Random rnd = new Random();
-                            int n = 10000 + rnd.nextInt(90000);
-                            Toast.makeText(getApplicationContext(), "New location:" + n, Toast.LENGTH_LONG).show();
-                            sendMessage("/send_shake", n + "");
+                            Toast.makeText(getApplicationContext(), "New location", Toast.LENGTH_LONG).show();
+                            sendMessage("/send_shake", "");
                         } else if (event.equals("click")) {
                             sendMessage("/send_click", extras.getString("name"));
                         }
@@ -82,6 +80,7 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
 
     @Override //alternate method to connecting: no longer create this in a new thread, but as a callback
     public void onConnected(Bundle bundle) {
+        Log.d("T", "Umm");
     }
 
     @Override //we need this to implement GoogleApiClient.ConnectionsCallback

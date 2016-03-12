@@ -20,9 +20,18 @@ import org.w3c.dom.Text;
  */
 
 public class VoteFragment extends Fragment {
+    static String county;
+    static String state;
+    static Double obamaVal;
+    static Double romneyVal;
 
-    public static VoteFragment newInstance(String mName, String mPosition, int mIconId) {
+    public static VoteFragment newInstance(String County, String State, Double ObamaVal, Double RomneyVal) {
         VoteFragment fragmentDemo = new VoteFragment();
+        county = County;
+        state = State;
+        obamaVal = ObamaVal;
+        romneyVal = RomneyVal;
+
         return fragmentDemo;
     }
 
@@ -38,16 +47,23 @@ public class VoteFragment extends Fragment {
 
         TextView tv = (TextView) v.findViewById(R.id.icon2);
         TextView tv2 = (TextView) v.findViewById(R.id.name2);
+        TextView countyView = (TextView) v.findViewById(R.id.county);
 
-        double obama_val = Math.round(Math.random() * 100.0) / 100.0;
+
+        double obama_val = obamaVal / 100.0;
+        Log.d("T", obama_val + "");
+        //double obama_val = Math.round(Math.random() * 100.0) / 100.0;
         double romney_val = 1.00 - obama_val;
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT, (float) obama_val);
         LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT, (float) romney_val);
 
-        tv.setText("OBAMA\n" + (int) (obama_val * 100) + "%");
-        tv2.setText("ROMNEY\n" + (int) (romney_val * 100) + "%");
-
+        int obamaDisplay = (int) Math.ceil(obama_val * 100.0);
+        tv.setText("OBAMA\n" + obamaDisplay  + "%");
+        Log.d("T", obamaDisplay + "");
+        int romneyDisplay = 100 - obamaDisplay;
+        tv2.setText("ROMNEY\n" + romneyDisplay + "%");
+        countyView.setText(county + ", " + state);
         tv.setLayoutParams(params);
         tv2.setLayoutParams(params2);
 

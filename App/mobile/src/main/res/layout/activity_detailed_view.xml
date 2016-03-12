@@ -17,35 +17,37 @@
     android:visibility="visible">
 
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="fill_parent"
-        android:id="@+id/FirstBox"
-        android:layout_below="@+id/CongressText"
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/BarbaraName"
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Barbara Boxer"
             android:fontFamily="sans-serif"
             android:textSize="30dp"
             android:gravity="center"
             android:textColor="#222"
             android:layout_marginBottom="5dp"
-            android:layout_above="@+id/BarbaraImage"
-            android:layout_alignEnd="@+id/BarbaraImage"
+            android:layout_above="@+id/thumbnail"
+            android:layout_alignEnd="@+id/thumbnail"
             android:enabled="false" />
 
         <TextView
-            android:id="@+id/BarbaraPosition2"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Senator"
             android:fontFamily="sans-serif-light"
             android:textSize="14dp"
             android:gravity="center"
@@ -55,11 +57,11 @@
             android:layout_alignEnd="@+id/BarbaraImage2"
             android:enabled="false" />
 
-        <ImageButton
+        <ImageView
             android:layout_width="320dp"
             android:layout_height="320dp"
-            android:id="@+id/BarbaraImage"
-            android:src="@drawable/barbara"
+            android:id="@+id/thumbnail"
+            android:background="#000"
             android:scaleType="fitXY"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
@@ -72,28 +74,34 @@
             android:padding="16dp"
             android:layout_below="@+id/FirstBox"
             android:layout_centerHorizontal="true"
-            android:id="@+id/linearLayout2">
+            android:id="@+id/partyBox">
 
-            <ImageButton
+            <LinearLayout
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:id="@+id/firstIcon"
-                android:src="@drawable/democrat"
-                android:background="#00000000"
-                android:longClickable="false"
-                android:scaleType="fitCenter"
                 android:layout_weight="1"
-                android:layout_gravity="center_vertical"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true" />
+                android:orientation="horizontal"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/partBox">
+
+                <ImageView
+                    android:layout_width="34dp"
+                    android:layout_height="28dp"
+                    android:id="@+id/partyIcon"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="30dp"
+                    android:layout_gravity="center"
+                    android:layout_centerHorizontal="true"/>
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:id="@+id/secondIcon"
-                android:text="Democrat"
+                android:id="@+id/party"
                 android:textColor="#fff"
                 android:textSize="24dp"
+                android:text="Democrat"
                 android:layout_weight="1"
                 android:scaleType="fitCenter"
                 android:layout_alignTop="@+id/fourthIcon2"
@@ -107,7 +115,7 @@
             android:background="#828282"
             android:padding="16dp"
             android:layout_marginTop="40dp"
-            android:layout_above="@+id/linearLayout2"
+            android:layout_above="@+id/partyBox"
             android:layout_centerHorizontal="true"
             android:id="@+id/linearLayout3">
 
@@ -125,8 +133,7 @@
             <TextView
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:id="@+id/TermYear"
-                android:text="2017"
+                android:id="@+id/termEnd"
                 android:textColor="#fff"
                 android:textSize="20dp"
                 android:layout_weight="1"
@@ -140,7 +147,7 @@
             android:layout_height="wrap_content"
             android:text="Active Committees"
             android:textSize="20dp"
-            android:id="@+id/ZipButton"
+            android:id="@+id/committeesContainer"
             android:layout_marginTop="12dp"
             android:gravity="left"
             android:fontFamily="sans-serif"
@@ -154,108 +161,22 @@
             android:layout_centerHorizontal="true" />
 
 
+
         <LinearLayout
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:background="#e3e3e3"
             android:padding="4dp"
             android:layout_centerHorizontal="true"
             android:id="@+id/CommitteesItemContainer"
             android:orientation="vertical"
             android:visibility="gone">
 
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:background="#e3e3e3"
-                android:padding="4dp"
-                android:layout_centerVertical="true"
-                android:id="@+id/CommitteesItemLayout">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:id="@+id/CommitteesItemImage"
-                    android:layout_weight="0.2"
-                    android:src="@drawable/seal"
-                    android:foregroundGravity="left"
-                    android:scaleType="fitCenter"/>
-
-                <TextView
-                    android:layout_width="32dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/CommitteesItemText"
-                    android:text="Senate Select Committee on Ethics"
-                    android:textColor="#222"
-                    android:textSize="12dp"
-                    android:gravity="center_vertical"
-
-                    android:layout_weight="0.8"
-                    android:paddingRight="10dp"
-                    android:scaleType="fitCenter"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:background="#e3e3e3"
-                android:padding="4dp"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/CommitteesItemLayout2">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:id="@+id/CommitteesItemImage2"
-                    android:layout_weight="0.2"
-                    android:src="@drawable/seal"
-                    android:foregroundGravity="left"
-                    android:scaleType="fitCenter"/>
-
-                <TextView
-                    android:layout_width="32dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/CommitteesItemText2"
-                    android:text="Senate Committee on Environment and Public Works"
-                    android:textColor="#222"
-                    android:textSize="12dp"
-                    android:gravity="center_vertical"
-
-                    android:layout_weight="0.8"
-                    android:paddingRight="10dp"
-                    android:scaleType="fitCenter"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:background="#e3e3e3"
-                android:padding="4dp"
-                android:layout_centerHorizontal="true"
-                android:id="@+id/CommitteesItemLayout3">
-
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:id="@+id/CommitteesItemImage3"
-                    android:layout_weight="0.2"
-                    android:src="@drawable/seal"
-                    android:foregroundGravity="left"
-                    android:scaleType="fitCenter"/>
-
-                <TextView
-                    android:layout_width="32dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/CommitteesItemText3"
-                    android:text="Senate Committee on Commerce, Science, and Transportation"
-                    android:textColor="#222"
-                    android:textSize="12dp"
-                    android:gravity="center_vertical"
-
-                    android:layout_weight="0.8"
-                    android:paddingRight="10dp"
-                    android:scaleType="fitCenter"/>
-            </LinearLayout>
+            <view
+                android:id="@+id/recycler_view"
+                class="android.support.v7.widget.RecyclerView"
+                android:layout_width="320dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true" />
 
         </LinearLayout>
 
@@ -268,7 +189,7 @@
             android:textColor="#fff"
             android:background="#828282"
             android:fontFamily="sans-serif"
-            android:id="@+id/LocationButton"
+            android:id="@+id/billContainer"
             android:gravity="left"
             android:padding="16dp"
             android:textAllCaps="false"
@@ -280,7 +201,6 @@
         <LinearLayout
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:background="#e3e3e3"
             android:padding="4dp"
             android:layout_centerHorizontal="true"
             android:id="@+id/BillItemContainer"
@@ -288,38 +208,15 @@
             android:visibility="gone"
             android:onClick="BillContainerVisible">
 
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:background="#e3e3e3"
-                android:padding="4dp"
-                android:layout_centerVertical="true"
-                android:id="@+id/BillItemLayout">
 
-                <TextView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:id="@+id/BillItemDate"
-                    android:layout_weight="0.2"
-                    android:foregroundGravity="left"
-                    android:text="Feb 03\n2016"
-                    android:gravity="center"
-                    android:scaleType="fitCenter"/>
+            <view
+                android:id="@+id/recycler_view2"
+                class="android.support.v7.widget.RecyclerView"
+                android:layout_width="320dp"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true" />
 
-                <TextView
-                    android:layout_width="32dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/BillItemText"
-                    android:text="S. 2487: Female Veteran Suicide Prevention Act"
-                    android:textColor="#222"
-                    android:textSize="12dp"
-                    android:gravity="center_vertical"
-
-                    android:layout_weight="0.8"
-                    android:paddingRight="10dp"
-                    android:scaleType="fitCenter"/>
-            </LinearLayout>
-
+            <!--
             <LinearLayout
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
@@ -383,6 +280,7 @@
                     android:paddingRight="10dp"
                     android:scaleType="fitCenter"/>
             </LinearLayout>
+            -->
 
         </LinearLayout>
 

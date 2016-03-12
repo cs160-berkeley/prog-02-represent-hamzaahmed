@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.hamza.prog02">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -34,6 +39,12 @@
         </activity>
         <activity android:name=".CongressionalViewActivity" />
         <activity android:name=".DetailedViewActivity" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBfGvOFiodnj2r_AhW6MRGdlypupW84G4Q"/>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="193ba2ca22ff9230fed177b8a52c7d0591fc9331" />
     </application>
 
 </manifest>
